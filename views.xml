@@ -1,0 +1,155 @@
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="schools9.list">
+      <field name="name">schools9 list</field>
+      <field name="model">schools9.schools9</field>
+      <field name="arch" type="xml">
+          <form string="student_form">
+          <sheet>
+            <xpath expr="//sheet" position="before">
+              <header>
+                <button name="send_mail_template" string="Send e-mail" type="object" class="oe_highlight"/>
+              </header>
+          </xpath>
+             <field name="image" widget='image' class="oe_avatar"/>
+            <notebook>
+              <page string="Details" >
+                <group string="Personal Details">
+                  <group>
+                   <field name="Name"/>
+                   <field name="date_of_birth"/>
+                   <field name="student_gender"/>
+                  </group>
+                  <group>
+                   <field name="address1"/>
+                   <field name="address2"/>
+                   <field name="phone_number"/>
+                  </group>
+                </group>
+                 </page>
+                 <page string="Education">
+                   <group string="Educational Details">
+                       <group>
+                          <field name="year_of_class"/>
+                          <field name="Percentage"/>
+                       </group>
+                   </group>
+                 </page>
+                 <page string="Others">
+                   <group string="Other Details">
+                       <group>
+                          <field name="email_id"/>
+                          <field name="Activities"/>
+                       </group>
+                   </group>
+                 </page>
+            </notebook>
+
+
+            <notebook>
+              <page string="Send Mails">
+                <group>
+
+                </group>
+                <group>
+                  <button string="Send Email" type="object" name="generate_record_name" class="oe_highlight"/>
+                </group>
+              </page>
+            </notebook>
+
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="schools9_tree">
+      <field name="name">schools9 tree</field>
+      <field name="model">schools9.schools9</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="Name"/>
+          <field name="phone_number"/>
+          <field name="year_of_class"/>
+
+
+        </tree>
+
+      </field>
+    </record>
+    
+    
+
+
+
+
+    <record model="ir.ui.view" id="schools9_kanban">
+      <field name="name">schools9 tree</field>
+      <field name="model">schools9.schools9</field>
+      <field name="arch" type="xml">
+        <kanban>
+          <tree>
+            <field name="Name"/>
+            <field name="phone_number"/>
+            <field name="email_id"/>
+          </tree>
+          <templates>
+            <t t-name="kanban-box">
+              <div class="oe_kanban_card">
+
+                <a type="open">
+                  <field name="Name" />
+                  
+                </a>
+
+
+              </div>
+            </t>
+          </templates>
+        </kanban>
+      </field>
+    </record>
+
+
+ 
+  
+
+  
+    <record model="ir.actions.act_window" id="schools9.action_window">
+      <field name="name">schools9 window</field>
+      <field name="res_model">schools9.schools9</field>
+      <field name="view_mode">tree,form,kanban</field>
+    </record>
+   
+
+    
+    <record model="ir.actions.server" id="schools9.action_server">
+      <field name="name">schools9 server</field>
+      <field name="model_id" ref="model_schools9_schools9"/>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    
+
+    <!-- Top menu item -->
+  
+    <menuitem name="schools9" id="schools9.menu_root"/>
+  
+    <!-- menu categories -->
+   
+    <menuitem name="Menu 1" id="schools9.menu_1" parent="schools9.menu_root"/>
+    <menuitem name="Menu 2" id="schools9.menu_2" parent="schools9.menu_root"/>
+    
+    <!-- actions -->
+    
+    <menuitem name="List" id="schools9.menu_1_list" parent="schools9.menu_1"
+              action="schools9.action_window"/>
+    
+   
+  </data>
+</odoo>
